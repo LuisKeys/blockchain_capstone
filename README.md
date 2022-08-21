@@ -1,3 +1,17 @@
+Install Zokrates docker:
+
+* sudo usermod -a -G docker [your_user]
+* newgrp docker
+* docker run -v ~/projects/udacity/blockchain/blockchain-capstone:/home/zokrates/code -ti zokrates/zokrates /bin/bash
+
+In the docker instance terminal execute the following:
+
+* cd ~/code/zokrates/code/square
+* zokrates compile -i square.code
+* zokrates setup
+* zokrates compute-witness -a 3 9
+
+
 # Udacity Blockchain Capstone
 
 The capstone will build upon the knowledge you have gained in the course in order to build a decentralized housing product. 
