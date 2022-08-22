@@ -613,7 +613,7 @@ contract OSREERC721Token is ERC721Metadata("Open Sea Real Estate Listing","OSREL
 //  2) create a public mint() that does the following:
 //      -can only be executed by the contract owner
 //      -takes in a 'to' address, tokenId, and tokenURI as parameters
-        function mint(address to, uint tokenId, string memory tokenURI) public onlyOwner returns(bool) {
+        function mint(address to, uint tokenId) public onlyOwner returns(bool) {
 //      -calls the superclass mint and setTokenURI functions
            super._mint(to,tokenId);
            super.setTokenURI(tokenId);

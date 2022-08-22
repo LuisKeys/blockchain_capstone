@@ -187,6 +187,7 @@ contract Verifier {
              Pairing.negate(vk.alpha), vk.beta)) return 1;
         return 0;
     }
+    
     function verifyTx(
             Proof memory proof, uint[2] memory input
         ) public view returns (bool r) {
