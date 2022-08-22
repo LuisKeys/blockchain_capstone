@@ -1,3 +1,10 @@
+Versions:
+
+* Truffle v5.4.29 (core: 5.4.29)
+* Solidity v0.5.16 (solc-js)
+* Node v14.18.1
+* Web3.js v1.5.3
+
 Install Zokrates docker:
 
 * sudo usermod -a -G docker [your_user]
