@@ -14,7 +14,7 @@ contract Ownable {
     //  2) create an internal constructor that sets the _owner var to the creater of the contract
     constructor() internal {
         _owner = msg.sender;
-        emit TransferedOwnership(_owner);
+        emit TransferredOwnership(_owner);
     }
 
     //  3) create an 'onlyOwner' modifier that throws if called by any account other than the owner.
@@ -29,11 +29,11 @@ contract Ownable {
         // make sure the new owner is a real address
         require(newOwner != address(0));
         _owner = newOwner;
-        emit TransferedOwnership(newOwner);
+        emit TransferredOwnership(newOwner);
     }
 
     //  5) create an event that emits anytime ownerShip is transfered (including in the constructor)
-    event TransferedOwnership(address newOwner);
+    event TransferredOwnership(address newOwner);
 
 }
 
