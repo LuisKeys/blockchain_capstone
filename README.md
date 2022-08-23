@@ -1,11 +1,18 @@
-Versions:
+# Blockchain Capstone Project
+## Steps:
+
+Install node modules:
+* npm install
+* npm install @truffle/hdwallet-provider --save
+
+Versions of frameworks and libraries:
 
 * Truffle v5.4.29 (core: 5.4.29)
 * Solidity v0.5.16 (solc-js)
 * Node v14.18.1
 * Web3.js v1.5.3
 
-Install Zokrates docker:
+Zokrates docker installation:
 
 * sudo usermod -a -G docker [your_user]
 * newgrp docker
@@ -17,6 +24,10 @@ In the docker instance terminal execute the following:
 * zokrates compile -i square.code
 * zokrates setup
 * zokrates compute-witness -a 3 9
+
+Deploy contracts in Rinkeby testnet
+* Config truffle-config.js with your metmask rinkeby mnemonic and infura endpoint
+* Execute `truffle migrate --network rinkeby --reset`
 
 
 # Udacity Blockchain Capstone
