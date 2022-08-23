@@ -4,6 +4,26 @@ let verifier = artifacts.require("SquareVerifier");
 // Test verification with correct proof
 let proof = require("../../zokrates/code/square/proof");
 
-contract("TestSquareVerifier", (accounts) => {
-  const test_acc = accounts[0];
+contract('TestVerifier', accounts => {
+  describe('Verifier test', function(){
+      beforeEach(async function(){
+          this.contract = await verifier.new();
+      });
+
+      // Test verification with correct proof
+        it('Correct proof', async function(){
+          let result = await this.contract.verifyTx.call(proof.proof, proof.inputs);
+          assert.equal(result, true)
+      });
+
+      // Test verification with incorrect proof
+      it('Incorrect proof', async function () {
+          let inputs = [
+              "0x0000000000000000000000000000000000000000000000000000000000000001",
+              "0x0000000000000000000000000000000000000000000000000000000000000001"
+          ];
+          let result = await this.contract.verifyTx.call(proof.proof, inputs);
+          assert.equal(result, false);
+      });
+  });
 });

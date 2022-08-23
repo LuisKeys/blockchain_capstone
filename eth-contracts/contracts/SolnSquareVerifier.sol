@@ -30,7 +30,7 @@ mapping (bytes32 => Solutions) private uniqueSol;
 event AddedSol(uint tokenId,address to);
 
 // TODO Create a function to add the solutions to the array and emit the event
-function addSol(address to,uint tokenId, bytes32 key) public {
+function addSolution(address to,uint tokenId, bytes32 key) public {
     Solutions memory solutions = Solutions({tokenId:tokenId, to:to});
     solList.push(solutions);
     uniqueSol[key] = solutions;
@@ -40,12 +40,23 @@ function addSol(address to,uint tokenId, bytes32 key) public {
 // TODO Create a function to mint new NFT only after the solution has been verified
 //  - make sure the solution is unique (has not been used before)
 //  - make sure you handle metadata as well as tokenSuplly
-function mintToken(address to, uint tokenId, Proof memory proof, uint[2] memory input) public {
-    bytes32 key = keccak256(abi.encodePacked(input));
+function mintToken(address to, uint tokenId, uint[2] memory a, uint[2][2] memory b, uint[2] memory c, uint[2] memory input) public {
+    bytes32 key = keccak256(abi.encodePacked(a, b, c, input));
     require(uniqueSol[key].to == address(0),"used solution.");
+
+    Pairing.G1Point memory ap = Pairing.G1Point({X:a[0], Y:a[1]});
+    Pairing.G2Point memory bp = Pairing.G2Point({X:b[0], Y:b[1]});
+    Pairing.G1Point memory cp = Pairing.G1Point({X:c[0], Y:c[1]});
+
+  Proof memory proof = Proof({
+    a: ap,
+    b: bp,
+    c: cp
+  });
+
     require(verifyTx(proof, input),"invalid solution");
     
-    addSol(to, tokenId, key);
+    addSolution(to, tokenId, key);
     super.mint(to, tokenId);
 }
 
