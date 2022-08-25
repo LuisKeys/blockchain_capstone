@@ -11,7 +11,7 @@ module.exports = {
         blockTime: 1
     },
     rinkeby: {
-      provider: () => new HDWalletProvider(mnemonic, ``),
+      provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/xxxxxxxxxxxxxxxxx`),
         network_id: 4,       // rinkeby's id
         gas: 4500000,        // rinkeby has a lower block limit than mainnet
         gasPrice: 10000000000

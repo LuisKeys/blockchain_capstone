@@ -25,10 +25,24 @@ In the docker instance terminal execute the following:
 * zokrates setup
 * zokrates compute-witness -a 3 9
 
+Test contracts in Truffle devlopment local environment:
+* truffle develop
+In the truffle console run the following commands:
+* compile
+* migrate --reset
+* test
+
+Tests results:
+![Tests results](images/tests.png)
+
 Deploy contracts in Rinkeby testnet
 * Config truffle-config.js with your metmask rinkeby mnemonic and infura endpoint
 * Execute `truffle migrate --network rinkeby --reset`
 
+Contracts Addresses:
+OSREERC721Token:    0xEeC4BDA1D7a85582BaD7867F30aeAA80E4A3a1B8
+SquareVerifier:     0x2252fD47bdF13eeB33b59abc3285944f60C4506E
+SolnSquareVerifier: 0xA96D95F920c20445699b678F6778c5D3f74F0e20
 
 # Udacity Blockchain Capstone
 
