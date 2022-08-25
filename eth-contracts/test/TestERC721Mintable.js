@@ -1,23 +1,25 @@
-var ERC721MintableComplete = artifacts.require('OSREERC721Token');
+var OSREERC721Token = artifacts.require('OSREERC721Token');
 
 contract('TestERC721Mintable', accounts => {
 
     const account_1 = accounts[0];
     const account_2 = accounts[1];
     const account_3 = accounts[2];
+    const account_4 = accounts[3];
 
     describe('match erc721 spec', function () {
         beforeEach(async function () { 
-            this.contract = await ERC721MintableComplete.new({from: account_1});
+            this.contract = await OSREERC721Token.new({from: account_1});
 
             // TODO: mint multiple tokens
             await this.contract.mint(account_2, 1, {from: account_1});
             await this.contract.mint(account_3, 2, {from: account_1});
+            await this.contract.mint(account_4, 3, {from: account_1});
         })
 
         it('Should return total supply.', async function () { 
             let total = await this.contract.totalSupply.call();
-            assert.equal(total.toNumber(), 2, "incorrect total supply");
+            assert.equal(total.toNumber(), 3, "incorrect total supply");
         })
 
         it('Should get token balance.', async function () { 
@@ -48,15 +50,23 @@ contract('TestERC721Mintable', accounts => {
 
     describe('have ownership properties', function () {
         beforeEach(async function () { 
-            this.contract = await ERC721MintableComplete.new({from: account_1});
+            this.contract = await OSREERC721Token.new({from: account_1});
         })
 
-        it('should fail when minting when address is not contract owner', async function () { 
-            
+        it('Should fail when minting when address is not contract owner.', async function () { 
+            let failed = false;
+            try {
+                await this.contract.mint(account_4,3,{from: account_2});
+              } catch (e) {
+                failed = true;
+              }
+    
+              assert.equal(failed, true, "should fail when address is not account owner");
         })
 
-        it('should return contract owner', async function () { 
-            
+        it('Should return contract owner.', async function () { 
+            let owner = await this.contract.owner.call({from: account_1});
+            assert.equal(owner, account_1, "Owner should be account_1");
         })
 
     });
