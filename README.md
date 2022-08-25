@@ -24,6 +24,8 @@ In the docker instance terminal execute the following:
 * zokrates compile -i square.code
 * zokrates setup
 * zokrates compute-witness -a 3 9
+* zokrates generate-proof
+* zokrates export-verifier
 
 Test contracts in Truffle devlopment local environment:
 * truffle develop
