@@ -36,6 +36,14 @@ contract SolnSquareVerifier is OSREERC721Token, SquareVerifier {
         uint256[2] memory input
     ) public {
         bytes32 key = keccak256(abi.encodePacked(a, b, c, input));
+        require(uniqueSol[key].to == address(0), "Used solution.");
+
+        Pairing.G1Point memory ap = Pairing.G1Point({X: a[0], Y: a[1]});
+        Pairing.G2Point memory bp = Pairing.G2Point({X: b[0], Y: b[1]});
+        Pairing.G1Point memory cp = Pairing.G1Point({X: c[0], Y: c[1]});
+        Proof memory proof = Proof({a: ap, b: bp, c: cp});
+        require(verifyTx(proof, input), "Invalid solution.");
+
         Solutions memory solutions = Solutions({tokenId: tokenId, to: to});
         solList.push(solutions);
         uniqueSol[key] = solutions;
@@ -53,17 +61,6 @@ contract SolnSquareVerifier is OSREERC721Token, SquareVerifier {
         uint256[2] memory c,
         uint256[2] memory input
     ) public {
-        bytes32 key = keccak256(abi.encodePacked(a, b, c, input));
-        require(uniqueSol[key].to == address(0), "used solution.");
-
-        Pairing.G1Point memory ap = Pairing.G1Point({X: a[0], Y: a[1]});
-        Pairing.G2Point memory bp = Pairing.G2Point({X: b[0], Y: b[1]});
-        Pairing.G1Point memory cp = Pairing.G1Point({X: c[0], Y: c[1]});
-
-        Proof memory proof = Proof({a: ap, b: bp, c: cp});
-
-        require(verifyTx(proof, input), "invalid solution");
-
         addSolution(to, tokenId, a, b, c, input);
         super.mint(to, tokenId);
     }

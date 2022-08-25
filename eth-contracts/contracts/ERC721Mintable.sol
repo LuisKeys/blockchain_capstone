@@ -281,8 +281,8 @@ contract ERC721 is Pausable, ERC165 {
     // TIP: remember the functions to use for Counters. you can refresh yourself with the link above
     function _mint(address to, uint256 tokenId) internal {
         // TODO revert if given tokenId already exists or given address is invalid
-        require(!_exists(tokenId),"tokenId already exists");
-        require(to != address(0)," invalid address");
+        require(!_exists(tokenId),"Token already exists");
+        require(to != address(0)," Invalid address");
 
         // TODO mint tokenId to given address & increase token count of owner
         _tokenOwner[tokenId] = to;
@@ -300,10 +300,11 @@ contract ERC721 is Pausable, ERC165 {
         uint256 tokenId
     ) internal {
         // TODO: require from address is the owner of the given token
-        require(from == _tokenOwner[tokenId],"Provided from address is not the owner of the token");
+        require(from == _tokenOwner[tokenId],"Provided from address is not the owner of the token.");
         
         // TODO: require token is being transfered to valid address
-        require(to != address(0),"destination address is not valid");
+        require(to != address(0),"The destination address is not valid.");
+        require(!to.isContract(), "The destination address is not valid.");
         
         // TODO: clear approval
         _clearApproval(tokenId);
@@ -608,7 +609,7 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
 //  TODO's: Create CustomERC721Token contract that inherits from the ERC721Metadata contract. You can name this contract as you please
 //  1) Pass in appropriate values for the inherited ERC721Metadata contract
 //      - make the base token uri: https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/
-contract OSREERC721Token is ERC721Metadata("Open Sea Real Estate Listing","OSREL","https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/"){
+contract OSREERC721Token is ERC721Metadata("Open Sea Real Estate Token 721","OSREL","https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/"){
 
 //  2) create a public mint() that does the following:
 //      -can only be executed by the contract owner
