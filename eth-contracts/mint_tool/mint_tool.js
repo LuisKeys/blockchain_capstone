@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 const web3 = require("web3");
 
@@ -25,35 +25,43 @@ console.log("CONTRACT_ADDRESS:" + CONTRACT_ADDRESS);
 console.log("MNEMONIC:" + MNEMONIC);
 console.log("INFURA_KEY:" + INFURA_KEY);
 
-/*
-const contract = require("../eth-contracts/build/contracts/SolnSquareVerifier.json");
+const contract = require("../build/contracts/SolnSquareVerifier.json");
 const ABI = contract.abi;
-*/
 
 async function main() {
-  /*
-  const provider = new HDWalletProvider(MNEMONIC, `https://rinkeby.infura.io/v3/${INFURA_KEY}`);
+  const provider = new HDWalletProvider(
+    MNEMONIC,
+    `https://rinkeby.infura.io/v3/${INFURA_KEY}`
+  );
   const web3Instance = new web3(provider);
 
   const OSREERC721Token = new web3Instance.eth.Contract(ABI, CONTRACT_ADDRESS, {
     gasLimit: "1000000",
   });
-    
+
+  console.log("Start mint process...");
   for (let i = 0; i < 10; i++) {
     try {
       let proofs = Object.values(zproofs[i].proof);
       let inputs = zproofs[i].inputs;
-      let tx = await OSREERC721Token.methods.addSolution(OWNER_ADDRESS, i, ...proofs, inputs).send({ from: OWNER_ADDRESS });
-      console.log("Solution added. Transaction: " + tx.transactionHash);
+      let tx = await OSREERC721Token.methods
+        .addSolution(OWNER_ADDRESS, i, ...proofs, inputs)
+        .send({ from: OWNER_ADDRESS });
+
+      console.log("Solution added - Tx: " + tx.transactionHash);
+
       tx = await OSREERC721Token.methods
         .mint(OWNER_ADDRESS, i)
         .send({ from: OWNER_ADDRESS });
-      console.log("Minted item. Transaction: " + tx.transactionHash);
+
+      console.log("Mint item - Tx: " + tx.transactionHash);
+
     } catch (e) {
+
       console.log(e);
+      
     }
   }
-  */
 }
 
 main();
