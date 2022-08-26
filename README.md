@@ -62,11 +62,15 @@ test
 ## Export the following environment variables or define them in a .env file in the root of the project:
 ```
 export OWNER=_ADDRESS"<owner_address>"
-export CONTRACT_ADDRESS="<deployed_contract_address>"
+export CONTRACT_ADDRESS="0xA96D95F920c20445699b678F6778c5D3f74F0e20"
 export MNEMONIC="<metmask_mnemonic>"
 export INFURA_KEY="<infura_key>"
 node scripts/mint_tool.js
 ```
+
+## Open Sea URLs:
+Seller: https://testnets.opensea.io/collection/open-sea-real-estate-token-721
+Buyer: https://testnets.opensea.io/0xF634100Bc14E2B301E9C4aDF56Bc6c1C9d91a7B0
 
 ## SolnSquareVerifier Contract ABI:
 ```
