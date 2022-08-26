@@ -1,5 +1,7 @@
+require('dotenv').config();
 var HDWalletProvider = require("@truffle/hdwallet-provider");
-var mnemonic = "";
+var mnemonic = process.env.MNEMONIC;
+const INFURA_KEY = process.env.INFURA_KEY;
 
 module.exports = {
   networks: {
@@ -11,7 +13,7 @@ module.exports = {
         blockTime: 1
     },
     rinkeby: {
-      provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/xxxxxxxxxxxxxxxxx`),
+      provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/${INFURA_KEY}`),
         network_id: 4,       // rinkeby's id
         gas: 4500000,        // rinkeby has a lower block limit than mainnet
         gasPrice: 10000000000
@@ -23,3 +25,4 @@ module.exports = {
     }
   }
 };
+
