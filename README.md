@@ -41,6 +41,16 @@ export INFURA_KEY="<infura_key>"
 truffle test
 ```
 
+For the full process type the following to enter in the truffle console:
+```
+truffle develop
+```
+Insisde the truffle console type:
+```
+compile
+migrate --reset
+```
+
 ## Tests results:
 ![Tests results](images/tests.png)
 
@@ -62,7 +72,7 @@ truffle test
 * Addsolution and Mint transactions detailed here:
 https://rinkeby.etherscan.io/address/0xA96D95F920c20445699b678F6778c5D3f74F0e20
 
-## Export the following environment variables or define them in a .env file in the root of the project:
+## To mint Token export the following environment variables or define them in a .env file in the root of the project:
 ```
 export OWNER=_ADDRESS"<owner_address>"
 export CONTRACT_ADDRESS="0xA96D95F920c20445699b678F6778c5D3f74F0e20"
