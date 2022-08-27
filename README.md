@@ -36,7 +36,7 @@ zokrates export-verifier
 export MNEMONIC="<metmask_mnemonic>"
 export INFURA_KEY="<infura_key>"
 ```
-## Test contracts in Truffle devlopment local environment:
+## Test contracts in Truffle development local environment:
 ```
 truffle test
 ```
