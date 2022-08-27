@@ -31,16 +31,14 @@ zokrates generate-proof
 zokrates export-verifier
 ```
 
+## Export the following environment variables or define them in a .env file in the root of the project:
+```
+export MNEMONIC="<metmask_mnemonic>"
+export INFURA_KEY="<infura_key>"
+```
 ## Test contracts in Truffle devlopment local environment:
 ```
-truffle develop
-```
-
-## In the truffle console run the following commands:
-```
-compile
-migrate --reset
-test
+truffle test
 ```
 
 ## Tests results:
@@ -54,11 +52,16 @@ test
   ```
 
 ## Contracts Addresses:
-* SolnSquareVerifier: 0xA96D95F920c20445699b678F6778c5D3f74F0e20
-* SquareVerifier:     0x2252fD47bdF13eeB33b59abc3285944f60C4506E
 * Migrations:         0x10B304e641C372fAb4E605d0f612C520ad0F799c
+* https://rinkeby.etherscan.io/address/0x10B304e641C372fAb4E605d0f612C520ad0F799c
 
-## Mint 10 tokens using `scripts/mint_tool.js`
+* SquareVerifier:     0x2252fD47bdF13eeB33b59abc3285944f60C4506E
+* https://rinkeby.etherscan.io/address/0x2252fD47bdF13eeB33b59abc3285944f60C4506E
+
+* SolnSquareVerifier: 0xA96D95F920c20445699b678F6778c5D3f74F0e20
+* Addsolution and Mint transactions detailed here:
+https://rinkeby.etherscan.io/address/0xA96D95F920c20445699b678F6778c5D3f74F0e20
+
 ## Export the following environment variables or define them in a .env file in the root of the project:
 ```
 export OWNER=_ADDRESS"<owner_address>"
@@ -67,10 +70,25 @@ export MNEMONIC="<metmask_mnemonic>"
 export INFURA_KEY="<infura_key>"
 node scripts/mint_tool.js
 ```
-
 ## Open Sea URLs:
-Seller: https://testnets.opensea.io/collection/open-sea-real-estate-token-721
-Buyer: https://testnets.opensea.io/0xF634100Bc14E2B301E9C4aDF56Bc6c1C9d91a7B0
+* storefront link (seller): https://testnets.opensea.io/0xbDc52D0146298216fB1E55c8f20f4f01d78A4FFa/open-sea-real-estate-token-721
+* Buyer: https://testnets.opensea.io/0xF634100Bc14E2B301E9C4aDF56Bc6c1C9d91a7B0
+
+Storefront can also be find searching the Token name: 'Open Sea Real Estate Token 721'
+
+Open Sea storefront screenshot (10 created, 5 sold):
+
+![Tests results](images/storefront.png)
+
+Open Sea byer account screenshot (5 purchased):
+
+![Tests results](images/buyer.png)
+
+Migrations screenshot:
+![Tests results](images/migrations.png)
+
+Mint transactions screenshot:
+![Tests results](images/mint_tx.png)
 
 ## SolnSquareVerifier Contract ABI:
 ```
